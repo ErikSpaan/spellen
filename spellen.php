@@ -9,7 +9,7 @@
     <body>
         <div class="debug bigwrapper">
             <div class="debug flex">
-                <?php include "db_getdata.php"; ?>
+                <?php include "db_getdata_filter_sorteren.php"; ?>
             </div>  <!-- end flex -->
 
             <div class="debug head-title">
@@ -18,7 +18,7 @@
 
             <!-- DIV filter -->
             <div class="debug head-filter">
-              <form action="spellen_filter_sorteren.php" method="GET">
+              <form action="spellen.php" method="GET">
                
                          
               <label>Sorteren type:</label>
