@@ -10,7 +10,7 @@
         <div class="debug bigwrapper">
     
             <div class="debug flex">
-                <?php include "db_getdata_filter_categorie.php"; ?>
+                <?php include "db_getdata_filter_sorteren.php"; ?>
             </div>  <!-- end flex -->
             <div class="debug head-title">
                 Spellen
