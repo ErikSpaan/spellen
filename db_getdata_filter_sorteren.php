@@ -11,52 +11,85 @@
         $prijsmax = $_GET['prijsmax']*100;
         $sorteren = $_GET['sorteren'];
         $sorteertype = $_GET['sorteertype'];
+        $uitgever = $_GET['uitgever'];
         
         //We hebben een categorie ontvangen
-        if ($categorie > 0 AND $genre == 0) {
-          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
+        if ($categorie > 0 AND $genre == 0 AND $uitgever == 0) {
+          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
           FROM (spellen 
           INNER JOIN tabel_afbeelding 
           ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
           WHERE (categorie=$categorie AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
           ORDER BY $sorteren $sorteertype";
-          echo $genre;
-          }
-        elseif ($categorie > 0 AND $genre > 0) {
-          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
+         }
+        elseif ($categorie > 0 AND $genre > 0 AND $uitgever == 0) {
+          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
           FROM (spellen 
           INNER JOIN tabel_afbeelding 
           ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
           WHERE (categorie=$categorie AND genre=$genre AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
           ORDER BY $sorteren $sorteertype";
         }
-        elseif ($categorie == 0 AND $genre > 0) {
-            $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
+        elseif ($categorie == 0 AND $genre > 0  AND $uitgever == 0) {
+          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
+          FROM (spellen 
+          INNER JOIN tabel_afbeelding 
+          ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+          WHERE (genre=$genre AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+          ORDER BY $sorteren $sorteertype";
+        }
+
+        elseif ($categorie == 0 AND $genre == 0 AND $uitgever > 0) {
+            $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
             FROM (spellen 
             INNER JOIN tabel_afbeelding 
             ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
-            WHERE (genre=$genre AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+            WHERE (uitgever=$uitgever AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
             ORDER BY $sorteren $sorteertype";
         }
-        else
-        {
-           
-        $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
-        FROM (spellen 
-        INNER JOIN tabel_afbeelding 
-        ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
-        WHERE (prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
-        ORDER BY $sorteren $sorteertype";
+          elseif ($categorie > 0 AND $genre == 0 AND $uitgever > 0) {
+            $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
+            FROM (spellen 
+            INNER JOIN tabel_afbeelding 
+            ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+            WHERE (categorie=$categorie AND uitgever=$uitgever AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+            ORDER BY $sorteren $sorteertype";
+          }
+          elseif ($categorie == 0 AND $genre > 0  AND $uitgever > 0) {
+            $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
+            FROM (spellen 
+            INNER JOIN tabel_afbeelding 
+            ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+            WHERE (genre=$genre AND uitgever=$uitgever AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+            ORDER BY $sorteren $sorteertype";
+          }
+          elseif ($categorie > 0 AND $genre > 0  AND $uitgever > 0) {
+            $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
+            FROM (spellen 
+            INNER JOIN tabel_afbeelding 
+            ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+            WHERE (categorie=$categorie AND genre=$genre AND uitgever=$uitgever AND prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+            ORDER BY $sorteren $sorteertype";
+          }
+
+        else {
+          $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, uitgever, rating, genre, afbeelding1 
+          FROM (spellen 
+          INNER JOIN tabel_afbeelding 
+          ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+          WHERE (prijs>$prijsmin AND prijs<$prijsmax) AND (spelnaam LIKE '%$spelnaam%')
+          ORDER BY $sorteren $sorteertype";
         }
 
-    }else{
-         //We hebben GEEN categorie ontvangen
-         $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
-        FROM (spellen 
-        INNER JOIN tabel_afbeelding 
-        ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
-        ORDER BY $sorteren $sorteertype";
-        //echo "categorie bestaat niet";
+    }
+    else {
+      //We hebben GEEN categorie ontvangen
+      $sql_querie = "SELECT spel_id, spelnaam, prijs, voorraad, rating, genre, afbeelding1 
+      FROM (spellen 
+      INNER JOIN tabel_afbeelding 
+      ON spellen.afbeelding = tabel_afbeelding.afbeelding_id) 
+      ORDER BY spelnaam";
+      //echo "categorie bestaat niet";
     }
 
     include "db_connection.php";           

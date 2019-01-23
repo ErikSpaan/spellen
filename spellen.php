@@ -80,7 +80,22 @@
                     <option value="3">expert</option>
                 </select>
               </div>
+
+              <label>Uitgever:</label>
+              <div class="custom-select" style="width:200px;">
+                <select name="uitgever">
+                    <option value="0">alle</option>
+                    <option value="1">999 games</option>
+                    <option value="3">Quined games</option>
+                    <option value="4">White Goblin Games</option>
+                    <option value="7">Goliath</option>
+                    <option value="8">Asmodee</option>
+                    <option value="9">Smart Games</option>
+                </select>
+              </div>
+
               <input type="submit">
+              <input type="reset">
               
             </form>
             
@@ -90,6 +105,15 @@
         </div> <!-- end bigwrapper-->
     </body>
 </html>
+
+/*
+<option <?php if ($_GET['genre'] == '0') { ?>selected="0" <?php }; ?>value="0">alle</option>
+                    <option <?php if ($_GET['genre'] == '3') { ?>selected="3" <?php }; ?>value="3">coöperatief</option>
+                    <option <?php if ($_GET['genre'] == '4') { ?>selected="4" <?php }; ?>value="4">deckbuilding</option>
+                    <option <?php if ($_GET['genre'] == '2') { ?>selected="2" <?php }; ?>value="2">kaartspel</option>
+                    <option <?php if ($_GET['genre'] == '6') { ?>selected="6" <?php }; ?>value="6">strategisch</option>
+                    <option <?php if ($_GET['genre'] == '1') { ?>selected="1" <?php }; ?>value="1">worker placement</option>
+                    */
 
 
 
