@@ -120,29 +120,40 @@
     foreach ($db_result as $row)
     {            
      
+  /* onclick="popupWindow('. $row['spel_id'] .')" */
+
     echo
-    '<a href="details.php?spel_ID=' . $row['spel_id'] . '">' . 
+    '<div onclick="popupWindow('. $row['spel_id'] . ')" id="' . $row['spel_id'] . '" href="details.php?spel_ID=' . $row['spel_id'] . '">' . 
     '<div class="debug card">' .
           '<div class="debug card-image">' .
               '<img class="debug image" src="' . $row['afbeelding1'] . '" alt="' . $row['spelnaam'] . '">' .
           '</div> <!-- card-image-->' .
           '<div class="debug card-content">' .
-              '<span class="card-title">' . $row['spelnaam'] . '</span>' .
-              '<br>'.
-              '<span class="card-stock">Uitgever : ' . $row['uitgever'] .'</span>' .
-              '<br>'.
-              '<span class="card-stock">Categorie : ' . $row['categorie'] .'</span>' .
-              '<br>'.
-              '<span class="card-stock">Genre : ' . $row['genre'] .'</span>' .
-              '<br>'.
-              '<span class="card-stock">Voorraad : ' . $row['voorraad'] .'</span>' .
-              '<br>' .
-              '<span class="card-rating">Rating : ' . $row['rating'] . '</span>' .
-              '<br>' .
-              '<span class="card-price">€ ' . intval($row[('prijs')])/100 . '</span>' .
-          '</div> <!-- card-content-->' .
+                '<div class="card-title">' . $row['spelnaam'] . 
+                '</div>' .
+                '<div class="card-rest">' . 
+                  '<span class="card-uitgever">uitgever : ' . $row['uitgever'] .'</span>' .
+                  '<br>'.
+                  '<span class="card-categorie">categorie : ' . $row['categorie'] .'</span>' .
+                  '<br>'.
+                  '<span class="card-genre">genre : ' . $row['genre'] .'</span>' .
+                '</div>' .
+          '</div> <!-- card-content-->' .     
+                '<div class="card-content-bottom-head">' .
+                  '<div class="card-content-bottom">' .
+                    '<span class="card-stock">voorraad</span>
+                     <span class="card-rating">rating</span>
+                     <span class="card-price">€</span>' .
+                  '</div>'.
+                  '<div class="card-content-bottom">
+                    <span class="card-stock-number">' . $row['voorraad'] . '</span>' .  
+                    '<span class="card-rating-number">' . $row['rating'] . '</span>' . 
+                    '<span class="card-price-number">' . ($row[('prijs')])/100 . '</span>' .
+                  '</div>' .
+              
+                '</div> <!-- card-content-bottom-head -->' .
       '</div> <!-- end card-->' .
-      '</a>';
+      '</div>';
       
        
     }    
