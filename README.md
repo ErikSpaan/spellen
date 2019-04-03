@@ -1,4 +1,4 @@
-# boardgame store
+# Boardgame store
 
 week 2 of the bootcamp:
 My second project was making a boardgame store website with sql.
